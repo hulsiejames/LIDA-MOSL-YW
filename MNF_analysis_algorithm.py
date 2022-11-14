@@ -6,13 +6,14 @@
 # MNF_finish:           datetime.time end period of MNF analysis    -- i.e. for 04:00:00 finish time MNF_finish = datetime.strptime('02:00:00', '%H:%M:%S').time()
 # time_col:             column heading of time column               -- Column heading for datetime.time values within DataFrame of meter reads for each MSN i.e 'reading_times', where reads[MSN]['reading_times'] returns the series of reading_times when each SM meter reading was transmitted
 # consumption_col:      column heading of consumption column        -- Similar to above but for the consumption column (floats) rather that time (datetime.time) i.e. 'Consumption'
+# date_col:             column heading of date column               -- Like above, but for reading Dates rather than consumption.
 
 # Algorithm outputs: 
 # MNF_analysis:         Dictionary of key:value pairs where - keys : unique MSNs | values : Pandas DataFrame of nightly MNF values (minimum flow and average flow during the nightline period)
 # MNF_analysis_average: Dictionary of key:value pairs where - keys : unique MSNs | values : tuples of average MNF values per MSN where each tuple consists of averaged (min_MNF, avg_MNF) i.e. [0]: averaged nightly minimum flow values | [1]: averaged average nightly flow values
 
 
-def MNF(reads, MNF_start, MNF_finish, time_col, consumption_col):
+def MNF(reads, MNF_start, MNF_finish, time_col, date_col, consumption_col):
     print('\nConducting MNF analysis')
     
     i=0
